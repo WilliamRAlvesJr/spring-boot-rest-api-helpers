@@ -81,6 +81,7 @@ public class filterByTests {
         Assert.assertEquals(1, IterableUtil.sizeOf(moviesWithNullName4));
     }
 
+    /*
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     public void integer_range_queries() {
@@ -1239,4 +1240,6 @@ public class filterByTests {
         Iterable<Movie> allMovies2 = movieController.filterBy(null, null, null);
         Assert.assertEquals(3, IterableUtil.sizeOf(allMovies2));
     }
+
+     */
 }

@@ -150,7 +150,7 @@ public class FilterService<T,I extends Serializable> {
 
         }
         else {
-            result = repo.findAll(PageRequest.of(page, size, sortDir, sortBy));
+            result = repo.findAllGeneral(PageRequest.of(page, size, sortDir, sortBy));
         }
         return result;
     }
