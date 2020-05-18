@@ -5,13 +5,19 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class JSON {
+    
+    public static JSONObject dtoToJson(BaseFilterDTO dto) {
+        String gsonDTO = new Gson().toJson(dto);
+        JSONObject jsonDTO = toJsonObject(gsonDTO);
+        return jsonDTO;
+    }
 
     public static JSONObject toJsonObject(String str) {
         JSONObject jsonObj = new JSONObject(str);
