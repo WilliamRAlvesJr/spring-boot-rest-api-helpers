@@ -2,6 +2,7 @@ package springboot.rest.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import springboot.rest.entities.QueryParamWrapper;
@@ -10,6 +11,31 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 public class QueryParamExtractor {
+    
+    public static QueryParamWrapper extract(BaseFilterDTO dto) {
+        JSONObject jsonDTO = dtoToJson(dto);
+
+        String filterStr = "";
+        String sortStr = "";
+        String rangeStr = "";
+
+        try {
+            filterStr = jsonDTO.get("filter").toString();
+        } catch (JSONException e) {}
+
+        try {
+            rangeStr = jsonDTO.getString("range");
+        } catch (JSONException e) {}
+
+        try {
+            sortStr = jsonDTO.getString("sort");
+        } catch (JSONException e) {}
+
+        rangeStr = "[".concat(rangeStr).concat("]");
+        sortStr  = "[".concat(sortStr).concat("]");
+
+        return extract(filterStr, rangeStr, sortStr);
+    }
 
     public static QueryParamWrapper extract(String filterStr, String rangeStr, String sortStr) {
 
